@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Men Watches{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+       <a href="{%url 'mwatch' %}" class="list-group-item list-group-item-action" aria-current="true">All Men Watches</a>
+       <a href="{%url 'mwatchdata' 'Fastrack'%}" class="list-group-item list-group-item-action" aria-current="true">Fastrack</a>
+       <a href="{%url 'mwatchdata' 'Fossil'%}" class="list-group-item list-group-item-action" aria-current="true">Fossil</a>
+       <a href="{%url 'mwatchdata' 'Titan'%}" class="list-group-item list-group-item-action" aria-current="true">Titan</a>
+       <a href="{%url 'mwatchdata' 'below'%}" class="list-group-item list-group-item-action" aria-current="true">Below 1200</a>
+       <a href="{%url 'mwatchdata' 'above'%}" class="list-group-item list-group-item-action" aria-current="true">Above 1200</a>
+    </div> 
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      {%for product in mwatches%}
+      <div class="col-sm-4 text-center mb-4">
+        <a href="{%url 'product-detail' product.id%}" class="btn">
+          <div class="item">
+            <img src="{{product.product_image.url}}" alt="" height="300" class="">
+            <div class="fw-bold mt-3"><h5><b>{{product.brand}}</b></h5></div>
+            <div class="fw-bold">Rs. {{product.discounted_price}}<br>
+            <small class="fw-light text-decoration-line-through">{{product.selling_price}}></small></div>
+          </div>
+        </a>
+        <hr>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
